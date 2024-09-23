@@ -2,7 +2,7 @@
 
 namespace vevk {
     void Application::prepare() {
-        
+
     }
 
     void Application::destroy() {

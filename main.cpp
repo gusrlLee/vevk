@@ -1,4 +1,5 @@
 #include "vevk/vevk.h"
+#include "vevk/vevk_instance.h"
 
 int main() {
     vevk::init();
@@ -7,8 +8,9 @@ int main() {
     // *TODO - we have to implementation context 
     // auto vevk::Context gfx_context = vevk::make<vevk::Context>();
 
+    vk::Instance instance = vevk::create_instance("Vevk!");
 
-
+    instance.destroy();
 
     vevk::destroy_main_window(window);
     vevk::terminate();

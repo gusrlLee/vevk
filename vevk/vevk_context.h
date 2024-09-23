@@ -5,11 +5,12 @@ namespace vevk {
     typedef struct ContextCreateInfo {
         GLFWwindow* window;
         
+        
     } ContextCreateInfo;
 
     class Context {
         public:
-            void prepare();
+            void prepare(ContextCreateInfo create_info);
             void destroy();
 
         private:
