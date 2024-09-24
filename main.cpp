@@ -8,7 +8,7 @@ int main() {
     // *TODO - we have to implementation context 
     // auto vevk::Context gfx_context = vevk::make<vevk::Context>();
 
-    vk::Instance instance = vevk::create_instance("Vevk!");
+    vk::Instance instance = vevk::create_instance("Vevk!", true);
 
     instance.destroy();
 
