@@ -24,6 +24,12 @@ add_library(VEVK_LIB
 
     vevk_application.h
     vevk_application.cpp
+
+    vevk_debug_messenger.h
+    vevk_debug_messenger.cpp
+
+    vevk_device.h
+    vevk_device.cpp
 )
 
 target_link_libraries(VEVK_LIB Vulkan::Vulkan)

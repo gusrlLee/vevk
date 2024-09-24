@@ -1,4 +1,6 @@
 #pragma once 
+#include "vevk_pch.h"
+
 #include <iostream>
 #include <spdlog/spdlog.h>
 
@@ -7,6 +9,8 @@ namespace vevk {
         public:
             static void init();
             static std::shared_ptr<spdlog::logger>& Get() { return s_logger; }
+
+            vk::DebugUtilsMessengerEXT make_debug_messenger(vk::Instance& instance, vk::DispatchLoaderDynamic& dldi);
         private:
             static std::shared_ptr<spdlog::logger> s_logger;
     };

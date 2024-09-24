@@ -5,5 +5,6 @@
 
 namespace vevk {
     void init();
+    void hint();
     void terminate();
 }
