@@ -30,6 +30,7 @@ vk::DebugUtilsMessengerEXT make_debug_messenger(vk::Instance &instance, vk::Disp
         return nullptr;
     }
 
+    VEVK_INFO("Success to create debug messenger! :-)");
     return messenger.value();
 }
 

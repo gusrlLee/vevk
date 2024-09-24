@@ -1,4 +1,5 @@
 #include "vevk_instance.h"
+#include "vevk.h"
 
 namespace vevk {
 
@@ -52,7 +53,7 @@ namespace vevk {
         return true;
     }
 
-    std::vector<const char*> get_required_extensions(bool is_enable_validation_layer) {
+    std::vector<const char*> get_required_extensions() {
         uint32_t glfw_extension_count = 0;
         const char** glfw_extension_list;
 
@@ -69,7 +70,7 @@ namespace vevk {
         return extension_list;
     }
 
-    vk::Instance create_instance(std::string application_name, bool is_enable_validation_layer) {
+    vk::Instance create_instance(std::string application_name) {
         VEVK_INFO("Create vulkan instance!");
         uint32_t version = vk::enumerateInstanceVersion();
 
@@ -83,7 +84,7 @@ namespace vevk {
         );
 
         // NOTE - GLFW extensions
-        std::vector<const char*> required_extensions = get_required_extensions(is_enable_validation_layer);
+        std::vector<const char*> required_extensions = get_required_extensions();
         if (!check_supported_extensions_by_instance(required_extensions.data(), required_extensions.size())) {
             VEVK_WARN("Failed to create vulkan instance, due to not support extensions...");
             return nullptr;
@@ -114,13 +115,12 @@ namespace vevk {
         // NOTE - Because m1 chip appple device is used MotlenVK.
         instance_create_info.flags |= vk::InstanceCreateFlagBits::eEnumeratePortabilityKHR;
 #endif
-
         ResultCheck<vk::Instance> instance_temp = vk::createInstance(instance_create_info);
         if (!instance_temp.has_value()) {
             VEVK_ERROR("Failed to create vulkan instance :-(");
             std::exit(-1);
         }
-
+        VEVK_INFO("Success to create vulkan instance! :-)");
         return instance_temp.value();
     }
 }

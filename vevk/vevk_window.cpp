@@ -11,6 +11,7 @@ GLFWwindow* create_main_window(uint32_t window_width, uint32_t window_height, st
         std::exit(-1);
     }
 
+    VEVK_INFO("Success to create GLFW window! :-)");
     return window;
 }   
 

@@ -9,8 +9,9 @@ bool check_supported_extensions_by_instance(const char** extention_name_list, in
 
 bool check_supported_layers_by_instance(const char** layer_name_list, int layer_count);
 
-std::vector<const char*> get_required_extensions(bool is_enable_validation_layer);
+std::vector<const char*> get_required_extensions();
 
-vk::Instance create_instance(std::string application_name, bool is_enable_validation_layer);
+vk::Instance create_instance(std::string application_name);
+
 
 }
