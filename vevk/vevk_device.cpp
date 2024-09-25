@@ -80,8 +80,10 @@ vk::Device create_logical_device(vk::PhysicalDevice physical_device) {
         enabled_layer_list.push_back("VK_LAYER_KHRONOS_validation");
     
     std::vector<const char*> device_extenions_list;
+#if __APPLE__
+    // NOTE - MacOS use MoltenVK
     device_extenions_list.push_back("VK_KHR_portability_subset");
-
+#endif
     vk::DeviceCreateInfo device_create_info = vk::DeviceCreateInfo(
         vk::DeviceCreateFlags(),
         1,
