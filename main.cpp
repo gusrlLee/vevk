@@ -1,41 +1,36 @@
 #include "vevk/vevk.h"
-#include "vevk/vevk_instance.h"
-#include "vevk/vevk_debug_messenger.h"
-#include "vevk/vevk_device.h"
+#include "vevk/vevk_context.h"
+#include "vevk/vevk_swapchain.h"
+#include "vevk/vevk_rendering_system_builder.h"
 
 int main() {
     vevk::init();
     vevk::hint(vevk::VEVK_VALIDATION_LAYER, vevk::VEVK_USE_VALIDATION_LAYER);
 
     GLFWwindow* window = vevk::create_main_window(1280, 720, "Test");
+    auto gfx_ctx = vevk::make<vevk::Context>();
+    auto gfx_swapchain = vevk::make<vevk::Swapchain>();
 
-    // *TODO - we have to implementation context 
-    // auto vevk::Context gfx_context = vevk::make<vevk::Context>();
+    gfx_ctx->prepare(window);
+    gfx_swapchain->prepare(gfx_ctx);
 
-    // NOTE - Instance 
-    vk::Instance instance = vevk::create_instance("Vevk!");
-    
-    // NOTE - Dispatch loader dynamic 
-    vk::DispatchLoaderDynamic dldi = vk::DispatchLoaderDynamic(instance, vkGetInstanceProcAddr);
-    
-    // NOTE - Debug messenger 
-    vk::DebugUtilsMessengerEXT messenger = nullptr;
-    if (vevk::is_enable_validation_layer)
-        messenger = vevk::make_debug_messenger(instance, dldi);
+    auto rendering_system_builder = vevk::make<vevk::RenderingSystemBuilder>(gfx_ctx, gfx_swapchain);
+    // vk::Queue graphics_queue = rendering_system_builder->get_queue(vkb::QueueType::graphics);
+    vk::Queue present_queue = rendering_system_builder->get_queue(vkb::QueueType::present);
+    vk::Queue compute_queue = rendering_system_builder->get_queue(vkb::QueueType::graphics);
+    vk::Queue compute_queue2 = rendering_system_builder->get_queue(vkb::QueueType::compute);
 
-    // NOTE - Physical device 
-    vk::PhysicalDevice choosed_device = vevk::choose_physical_device(instance);
-    
-    // NOTE - Logical device 
-    vk::Device device = vevk::create_logical_device(choosed_device);
+    vk::RenderPass render_pass = rendering_system_builder->create_basic_render_pass();
+    vk::PipelineLayout pipeline_layout = rendering_system_builder->create_pipeline_layout();
+    vk::Pipeline graphics_pipelien = rendering_system_builder->create_graphics_pipeline(render_pass, pipeline_layout, "../Shader/triangle_vert.spv", "../Shader/triangle_frag.spv");
 
+    // SECTION - we do 
 
-    device.destroy();
-
-    if (vevk::is_enable_validation_layer)
-        instance.destroyDebugUtilsMessengerEXT(messenger, nullptr, dldi);
-    
-    instance.destroy();
+    gfx_ctx->get_dispatch_table().destroyPipeline(graphics_pipelien, nullptr);
+    gfx_ctx->get_dispatch_table().destroyPipelineLayout(pipeline_layout, nullptr);
+    gfx_ctx->get_dispatch_table().destroyRenderPass(render_pass, nullptr);
+    gfx_swapchain->destroy();
+    gfx_ctx->destroy();
 
     vevk::destroy_main_window(window);
     vevk::terminate();

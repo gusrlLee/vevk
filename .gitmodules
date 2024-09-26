@@ -4,3 +4,6 @@
 [submodule "vender/spdlog"]
 	path = vender/spdlog
 	url = https://github.com/gabime/spdlog.git
+[submodule "vender/vk-bootstrap"]
+	path = vender/vk-bootstrap
+	url = https://github.com/charles-lunarg/vk-bootstrap

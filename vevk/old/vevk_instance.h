@@ -13,5 +13,4 @@ std::vector<const char*> get_required_extensions();
 
 vk::Instance create_instance(std::string application_name);
 
-
 }

@@ -13,7 +13,7 @@ namespace vevk {
 
     // SECTION - Logical Device
 
-    uint32_t find_queue_family_index(vk::PhysicalDevice target_physical_device, vk::QueueFlags requested_queue_type);
+    uint32_t find_queue_family_index(vk::PhysicalDevice target_physical_device, vk::SurfaceKHR surface, vk::QueueFlags requested_queue_type);
 
-    vk::Device create_logical_device(vk::PhysicalDevice physical_device);
+    vk::Device create_logical_device(vk::PhysicalDevice physical_device, vk::SurfaceKHR surface);
 }

@@ -1,21 +1,26 @@
 #pragma once 
 #include "vevk_pch.h"
+#include "vevk.h"
 
 namespace vevk {
-    typedef struct ContextCreateInfo {
-        GLFWwindow* window;
-        
-        
-    } ContextCreateInfo;
-
     class Context {
         public:
-            void prepare(ContextCreateInfo create_info);
+            void prepare(GLFWwindow* window);
             void destroy();
 
+            vkb::Instance get_instance() { return m_instance; }
+            vkb::Device get_device() { return m_device; }
+            vk::SurfaceKHR get_surface() { return m_surface; }
+
+            vkb::DispatchTable get_dispatch_table() { return m_disp_table; }
+
         private:
-            vk::Instance m_vk_instance;
-            vk::PhysicalDevice m_vk_physical_device;
-            vk::Device m_vk_device;
+            vkb::Instance m_instance;
+            vkb::InstanceDispatchTable m_inst_disp_table;
+
+            vkb::Device m_device;
+            vkb::DispatchTable m_disp_table;
+
+            vk::SurfaceKHR m_surface;
     };
 }

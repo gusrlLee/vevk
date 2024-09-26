@@ -8,9 +8,9 @@
 namespace vevk {
     
 template<typename T>
-using ptr = std::shared_ptr<T>;
+using Ptr = std::shared_ptr<T>;
 template<typename T, typename ... Args>
-constexpr ptr<T> make(Args&& ... args) {
+constexpr Ptr<T> make(Args&& ... args) {
     return std::make_shared<T>(std::forward<Args>(args)...);
 }
 

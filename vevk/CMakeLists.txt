@@ -13,25 +13,20 @@ add_library(VEVK_LIB
     vevk_context.h
     vevk_context.cpp
 
+    vevk_swapchain.h
+    vevk_swapchain.cpp
+
     vevk_window.h
     vevk_window.cpp
 
     vevk_log.h
     vevk_log.cpp
 
-    vevk_instance.h
-    vevk_instance.cpp
-
-    vevk_application.h
-    vevk_application.cpp
-
-    vevk_debug_messenger.h
-    vevk_debug_messenger.cpp
-
-    vevk_device.h
-    vevk_device.cpp
+    vevk_rendering_system_builder.h
+    vevk_rendering_system_builder.cpp
 )
 
 target_link_libraries(VEVK_LIB Vulkan::Vulkan)
 target_link_libraries(VEVK_LIB glfw)
 target_link_libraries(VEVK_LIB spdlog::spdlog_header_only)
+target_link_libraries(VEVK_LIB vk-bootstrap::vk-bootstrap)

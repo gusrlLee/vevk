@@ -11,6 +11,8 @@ add_subdirectory(vevk)
 add_executable(${PROJECT_NAME} main.cpp)
 
 # target_link_libraries(${PROJECT_NAME} Vulkan::Vulkan)
+# target_link_libraries(${PROJECT_NAME} vk-bootstrap::vk-bootstrap)
+# target_link_libraries(${PROJECT_NAME} Vulkan::Vulkan)
 # target_link_libraries(${PROJECT_NAME} glfw)
 target_link_libraries(${PROJECT_NAME} VEVK_LIB)
 

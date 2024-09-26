@@ -49,11 +49,27 @@ vk::PhysicalDevice choose_physical_device(const vk::Instance& instance) {
     return nullptr;
 }
 
-uint32_t find_queue_family_index(vk::PhysicalDevice target_physical_device, vk::QueueFlags requested_queue_type) {
+uint32_t find_queue_family_index(vk::PhysicalDevice target_physical_device, vk::SurfaceKHR surface, vk::QueueFlags requested_queue_type) {
     std::vector<vk::QueueFamilyProperties> queue_families = target_physical_device.getQueueFamilyProperties();
     for (uint32_t i = 0; i < queue_families.size(); i++) {
-        vk::QueueFamilyProperties queue_family  = queue_families[i];
+        vk::QueueFamilyProperties queue_family = queue_families[i];
+
+        bool is_can_present_mode = false;
+        if (surface) {
+            if (target_physical_device.getSurfaceSupportKHR(i, surface)) {
+                is_can_present_mode = true;
+            }
+        }
+        else { // NOTE - This else code that there is not surface!! 
+            is_can_present_mode = true;
+        }
+
+        bool support = false;
         if (queue_family.queueFlags & requested_queue_type) {
+            support = true;
+        }
+
+        if (support & is_can_present_mode) {
             return i;
         }
     }
@@ -62,8 +78,8 @@ uint32_t find_queue_family_index(vk::PhysicalDevice target_physical_device, vk::
     return UINT32_MAX;
 }
 
-vk::Device create_logical_device(vk::PhysicalDevice physical_device) {  
-    uint32_t graphics_queue_index = find_queue_family_index(physical_device, vk::QueueFlagBits::eGraphics);
+vk::Device create_logical_device(vk::PhysicalDevice physical_device, vk::SurfaceKHR surface) {  
+    uint32_t graphics_queue_index = find_queue_family_index(physical_device, surface, vk::QueueFlagBits::eGraphics);
     float queue_priority = 1.0f;
 
     vk::DeviceQueueCreateInfo queue_create_info = vk::DeviceQueueCreateInfo(
@@ -81,7 +97,7 @@ vk::Device create_logical_device(vk::PhysicalDevice physical_device) {
     
     std::vector<const char*> device_extenions_list;
 #if __APPLE__
-    // NOTE - MacOS use MoltenVK
+    // NOTE - MacOS use MoltenVK, Window is not support this extensions
     device_extenions_list.push_back("VK_KHR_portability_subset");
 #endif
     vk::DeviceCreateInfo device_create_info = vk::DeviceCreateInfo(
