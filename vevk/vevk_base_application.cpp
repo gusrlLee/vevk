@@ -14,10 +14,25 @@ namespace vevk {
 		VEVK_INFO("Success to create glfw window! :-)");
 
 		// TODO: we need to create vulkan api contexts 
+		vkb::InstanceBuilder instance_builder;
+		auto instance_ret = instance_builder
+			.use_default_debug_messenger()
+			.request_validation_layers()
+			.build();
+	
+		if (!instance_ret)
+		{
+			VEVK_ERROR("Failed to create vulkan instance! :-(");
+		}
+		m_instance = instance_ret.value();
+		VEVK_INFO("Sucecss to create vulkan instance! :-)");
 	}
+
+
 	
 	void IBaseApplication::destroy()
 	{
+		vkb::destroy_instance(m_instance);
 		glfwDestroyWindow(m_window);
 	}
 }
