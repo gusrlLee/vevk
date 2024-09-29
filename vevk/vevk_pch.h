@@ -9,7 +9,8 @@
 #include <algorithm>
 #include <vector>
 #include <memory>
+#include <optional>
+#include <string>
 
 #include "VkBootstrap.h"
-
 #include "vevk_log.h"

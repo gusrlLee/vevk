@@ -1,6 +1,5 @@
 #pragma once 
 #include "vevk_pch.h"
-
 #include <iostream>
 #include <spdlog/spdlog.h>
 
@@ -20,3 +19,4 @@ namespace vevk {
 #define VEVK_INFO(...)    ::vevk::Log::Get()->info(__VA_ARGS__)
 #define VEVK_ERROR(...)    ::vevk::Log::Get()->error(__VA_ARGS__)
 #define VEVK_WARN(...)    ::vevk::Log::Get()->warn(__VA_ARGS__)
+//#define VEVK_CHECK(...)  

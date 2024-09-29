@@ -12,6 +12,9 @@ add_library(VEVK_LIB
 
     vevk_log.h
     vevk_log.cpp
+
+    vevk_base_application.h
+    vevk_base_application.cpp
 )
 
 target_link_libraries(VEVK_LIB Vulkan::Vulkan)

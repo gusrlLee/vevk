@@ -4,7 +4,8 @@
 namespace vevk {
     std::shared_ptr<spdlog::logger> Log::s_logger;
     
-    void Log::init() {
+    void Log::init() 
+    {
         spdlog::set_pattern("%^[%T] %n: %v%$");
         s_logger = spdlog::stdout_color_mt("VEVK");
     }
