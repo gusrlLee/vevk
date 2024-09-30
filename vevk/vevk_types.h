@@ -8,14 +8,10 @@
 namespace vevk {
     
 template<typename T>
-using Ptr = std::shared_ptr<T>;
+using ref = std::shared_ptr<T>;
 template<typename T, typename ... Args>
-constexpr Ptr<T> make(Args&& ... args) {
+constexpr ref<T> make(Args&& ... args) {
     return std::make_shared<T>(std::forward<Args>(args)...);
 }
-
-
-template<typename T>
-using ResultCheck = std::optional<T>;
 
 }

@@ -6,7 +6,7 @@ namespace vevk {
         // SECTION - Init instance
         vkb::InstanceBuilder instance_builder;
         auto instance_ret = instance_builder
-            .request_validation_layers(is_enable_validation_layer)
+            .request_validation_layers()
             .use_default_debug_messenger()
             .build();
 

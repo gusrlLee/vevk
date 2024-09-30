@@ -4,6 +4,8 @@ set(CMAKE_CXX_STANDARD 20)
 find_package(Vulkan REQUIRED)
 
 add_library(VEVK_LIB 
+    vevk_types.h
+
     vevk_pch.h
     vevk_pch.cpp
     
@@ -15,6 +17,12 @@ add_library(VEVK_LIB
 
     vevk_base_application.h
     vevk_base_application.cpp
+
+    vevk_context.h
+    vevk_context.cpp
+
+    vevk_swapchain.h
+    vevk_swapchain.cpp
 )
 
 target_link_libraries(VEVK_LIB Vulkan::Vulkan)

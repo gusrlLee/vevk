@@ -1,7 +1,7 @@
 #include "vevk_swapchain.h" 
 
 namespace vevk {
-    void Swapchain::prepare(Ptr<Context> ctx) {
+    void Swapchain::prepare(ref<Context> ctx) {
         vkb::SwapchainBuilder swapchain_builder{ ctx->get_device() };
         auto swap_ret = swapchain_builder
             .set_old_swapchain(m_swapchain)

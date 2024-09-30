@@ -16,6 +16,7 @@ int main() {
     auto app = std::make_shared<Application>();
     app->prepare();
 
+    app->run();
 
     app->destroy();
     vevk::terminate();

@@ -6,7 +6,7 @@
 namespace vevk {
     class Swapchain {
         public:
-            void prepare(Ptr<Context> ctx);
+            void prepare(ref<Context> ctx);
             void destroy();
 
             vkb::Swapchain get_swapchain() { return m_swapchain; }

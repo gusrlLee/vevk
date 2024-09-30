@@ -1,23 +1,22 @@
 #pragma once 
 
 #include "vevk_pch.h"
+#include "vevk_types.h"
 
 namespace vevk {
+    class Context;
+    class Swapchain;
+
     class IBaseApplication {
     public:
         void prepare();
         void destroy();
+
+        void run();
         
     private:
-
-
-
         GLFWwindow* m_window;
-        vkb::Instance m_instance;
-        vkb::InstanceDispatchTable m_instance_dispatch_table;
-        VkSurfaceKHR m_surface;
-        vkb::Device m_device;
-        vkb::DispatchTable m_dispatch_table;
-        vkb::Swapchain m_swapchain;
+        ref<Context> m_ctx;
+        ref<Swapchain> m_swapchain;
     };
 }

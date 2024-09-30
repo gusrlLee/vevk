@@ -10,7 +10,7 @@ namespace vevk {
 
             vkb::Instance get_instance() { return m_instance; }
             vkb::Device get_device() { return m_device; }
-            vk::SurfaceKHR get_surface() { return m_surface; }
+            VkSurfaceKHR get_surface() { return m_surface; }
 
             vkb::DispatchTable get_dispatch_table() { return m_disp_table; }
 
@@ -21,6 +21,6 @@ namespace vevk {
             vkb::Device m_device;
             vkb::DispatchTable m_disp_table;
 
-            vk::SurfaceKHR m_surface;
+            VkSurfaceKHR m_surface;
     };
 }
