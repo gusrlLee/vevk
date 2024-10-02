@@ -20,9 +20,6 @@ add_library(VEVK_LIB
 
     vevk_context.h
     vevk_context.cpp
-
-    vevk_swapchain.h
-    vevk_swapchain.cpp
 )
 
 target_link_libraries(VEVK_LIB Vulkan::Vulkan)

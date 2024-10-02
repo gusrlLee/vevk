@@ -19,3 +19,12 @@ namespace vevk {
 #define VEVK_INFO(...)    ::vevk::Log::Get()->info(__VA_ARGS__)
 #define VEVK_ERROR(...)    ::vevk::Log::Get()->error(__VA_ARGS__)
 #define VEVK_WARN(...)    ::vevk::Log::Get()->warn(__VA_ARGS__)
+
+#define VEVK_CHECK(x)                                                   \
+    do {                                                                \
+        VkResult err = x;                                               \
+        if (err) {                                                      \
+            spdlog::error("Detected Vulkan error: {}", string_VkResult(err)); \
+            abort();                                                    \
+        }                                                               \
+    } while (0)

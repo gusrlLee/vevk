@@ -1,6 +1,5 @@
 #include "vevk_base_application.h"
 #include "vevk_context.h"
-#include "vevk_swapchain.h"
 
 namespace vevk {
 	void IBaseApplication::prepare()
@@ -19,15 +18,10 @@ namespace vevk {
 		// SECTION - Make vulkan context
 		m_ctx = make<vevk::Context>();
 		m_ctx->prepare(m_window);
-
-		// SECTION - Make vulkan swapchain
-		m_swapchain = make<vevk::Swapchain>();
-		m_swapchain->prepare(m_ctx);
 	}
 	
 	void IBaseApplication::destroy()
 	{
-		m_swapchain->destroy();
 		m_ctx->destroy();
 		glfwDestroyWindow(m_window);
 	}

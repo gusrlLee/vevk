@@ -5,7 +5,7 @@
 
 namespace vevk {
     class Context;
-    class Swapchain;
+
 
     class IBaseApplication {
     public:
@@ -17,6 +17,8 @@ namespace vevk {
     private:
         GLFWwindow* m_window;
         ref<Context> m_ctx;
-        ref<Swapchain> m_swapchain;
+
+
+
     };
 }
