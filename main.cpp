@@ -1,24 +1,29 @@
-#pragma warning(disable : 4819)
 #include <iostream>
 #include "vevk/vevk.h"
 
-class Application : public vevk::IBaseApplication{
-public:
-
-private:
-
-};
-
 int main() {
-    
-    // vevk init (glfw and logging system)
-    vevk::init();
-    auto app = std::make_shared<Application>();
-    app->prepare();
+    vevkInit();
+    vevkHint(VEVK_CONTEXT_VULKAN_API_VERSION, VK_API_VERSION_1_3);
+    vevkHint(VEVK_USE_VALIDATION_LAYER, VEVK_TRUE);
+    vevkHint(VEVK_CONTEXT_ENV_TYPE, VEVK_MACOS);
 
-    app->run();
+    VEKVWindow* window = vevkCreateWindow(800, 600, "Test window!");
+    if (!window) 
+    {
+        std::runtime_error("Failed to create window :-(");
+        vevkTerminate();
+        exit(-1);
+    }   
 
-    app->destroy();
-    vevk::terminate();
+    VEVKGfxContext* gfxContext = vevkCreateGfxContext();
+
+    while (!vevkWindowShouldClose(window)) 
+    {
+        vevkPollEvents();
+    }
+
+    vevkDestroyGfxContext(gfxContext);
+    vevkDestroyWindow(window);
+    vevkTerminate();
     return 0;
 }

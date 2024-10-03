@@ -1,9 +1,7 @@
 #pragma once 
-#include "vevk_pch.h"
-#include "vevk_base_application.h"
-#include "vevk_log.h"
 
-namespace vevk {
-    void init();
-    void terminate();
-}
+#include "vevk_pch.h"
+#include "vevk_types.h"
+#include "vevk_core.h"
+#include "vevk_window.h"
+#include "vevk_gfx_context.h"
