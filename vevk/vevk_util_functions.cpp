@@ -1,4 +1,5 @@
 #include "vevk_util_functions.h"
+#include "vevk_core.h"
 
 bool vevkCheckSupportedExtensionsByInstance(const char** extensionNameList, int extensionCount)
 {

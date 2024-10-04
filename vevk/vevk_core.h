@@ -20,13 +20,40 @@ enum VEVK_OS_TYPE {
     VEVK_LINUX,
 };
 
+typedef struct VEVKGlobalEnvironmentConfig {
+    uint32_t userVulaknVersion;
+    bool bIsUsedValidationLayer;
+    std::vector<const char*> pInstanceAdditionalExtensionsNames;
+    std::vector<const char*> pDeviceAdditionalExtensionsNames;
+} VEVKGlobalEnvironmentConfig;
+
+// setting for vevk
+extern VEVKGlobalEnvironmentConfig gEnvConfig;
+
+/**
+ * @brief 
+ * 
+ */
 void vevkInit();
 
+/**
+ * @brief 
+ * 
+ * @param hint 
+ * @param value 
+ */
 void vevkHint(VEVK_HINT hint, uint32_t value);
 
+/**
+ * @brief 
+ * 
+ * @param hint 
+ * @param extensionName 
+ */
 void vevkHint(VEVK_HINT hint, std::string extensionName);
 
+/**
+ * @brief 
+ * 
+ */
 void vevkTerminate();
-
-VEVKGfxContext* vevkCreateGfxContext();
-void vevkDestroyGfxContext(VEVKGfxContext* gfxContext);

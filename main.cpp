@@ -1,6 +1,11 @@
 #include <iostream>
 #include "vevk/vevk.h"
 
+// TODO: 
+// 지금 나는 Vulkan API 를 OpenGL을 사용하는 것 처럼 정말 간단하게 만들어 주고 싶은 Open-source 를 만드는 중이다.
+// OpenGL : Init -> Shader binding -> Model loading -> Draw -> Destroy
+// Vevk : Graphics Pipeline 을 따라야 하기 때문에 이 부분을 static variable로 둔다면 접근이 쉽게 될듯...? 
+
 int main() 
 {
     vevkInit();
@@ -19,15 +24,13 @@ int main()
     vevkPrintSupportedExtensionsByInstance();
     vevkPrintSupportedLayersByInstance();
 
-    VEVKGfxContext* gfxContext = vevkCreateGfxContext();
+
 
     while (!vevkWindowShouldClose(pWindow))
     {
         vevkPollEvents();
     }
 
-
-    vevkDestroyGfxContext(gfxContext);
     vevkDestroyWindow(pWindow);
     vevkTerminate();
     return 0;
