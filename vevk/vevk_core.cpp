@@ -34,11 +34,9 @@ void vevkHint(VEVK_HINT hint, std::string extensionName)
     switch (hint)
     {
     case VEVK_CONTEXT_INSTANCE_ADDITIONAL_EXTENSION:
-        vevkGfxContextCreateInfo->pInstanceExtensionsNames.push_back(extensionName.c_str());
         break;
 
     case VEVK_CONTEXT_DEVICE_ADDITIONAL_EXTENSION:
-        vevkGfxContextCreateInfo->pDeviceExtensionsNames.push_back(extensionName.c_str());
         break;
     
     default:

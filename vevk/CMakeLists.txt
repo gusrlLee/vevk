@@ -16,6 +16,9 @@ add_library(VEVK_LIB
 
     vevk_gfx_context.h
     vevk_gfx_context.cpp
+
+    vevk_util_functions.h
+    vevk_util_functions.cpp
 )
 
 target_link_libraries(VEVK_LIB Vulkan::Vulkan)

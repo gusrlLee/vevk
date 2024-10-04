@@ -4,4 +4,5 @@
 #include "vevk_types.h"
 #include "vevk_core.h"
 #include "vevk_window.h"
+#include "vevk_util_functions.h"
 #include "vevk_gfx_context.h"
