@@ -42,6 +42,9 @@ void vevkPrintSupportedLayersByInstance();
 std::vector<const char*> vevkGetRequiredExtensions();
 
 
+std::vector<const char*> vevkGetRequiredLayers();
+
+
 // SECTION - Make basic create info functions 
 
 /**

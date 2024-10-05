@@ -8,14 +8,17 @@ add_library(VEVK_LIB
     vevk.h
     vevk.cpp
 
+    vevk_log.h
+    vevk_log.cpp
+
     vevk_core.h
     vevk_core.cpp
 
     vevk_window.h
     vevk_window.cpp
 
-    vevk_gfx_context.h
-    vevk_gfx_context.cpp
+    vevk_context.h
+    vevk_context.cpp
 
     vevk_util_functions.h
     vevk_util_functions.cpp
