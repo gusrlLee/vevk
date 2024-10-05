@@ -41,7 +41,11 @@ void vevkPrintSupportedLayersByInstance();
  */
 std::vector<const char*> vevkGetRequiredExtensions();
 
-
+/**
+ * @brief 
+ * 
+ * @return std::vector<const char*> 
+ */
 std::vector<const char*> vevkGetRequiredLayers();
 
 
@@ -61,3 +65,10 @@ VkApplicationInfo vevkMakeApplicationInfo();
  * @return VkInstanceCreateInfo 
  */
 VkInstanceCreateInfo vevkMakeInstanceInfo();
+
+
+VkDebugUtilsMessengerCreateInfoEXT vevkMakeDebugMessengerCreateInfo();
+
+VkResult vevkCreateDebugUtilsMessengerEXT(VkInstance instance, const VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDebugUtilsMessengerEXT* pDebugMessenger);
+
+void vevkDestroyDebugUtilsMessengerEXT(VkInstance instance, VkDebugUtilsMessengerEXT debugMessenger, const VkAllocationCallbacks* pAllocator);

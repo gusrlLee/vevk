@@ -10,4 +10,5 @@ class VEVKContext {
         bool bIsReady = false;
 
         VkInstance Instance;
+        VkDebugUtilsMessengerEXT DebugUtils = VK_NULL_HANDLE;
 };

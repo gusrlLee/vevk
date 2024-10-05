@@ -27,12 +27,29 @@ bool VEVKContext::init()
     instanceInfo.ppEnabledExtensionNames = glfwExtensionList.data();
     instanceInfo.enabledLayerCount = static_cast<uint32_t>(layerList.size());
     instanceInfo.ppEnabledLayerNames = layerList.data();
+    
+    VkDebugUtilsMessengerCreateInfoEXT debugCreateInfo = vevkMakeDebugMessengerCreateInfo();
+    if (gEnvConfig.bIsUsedValidationLayer)
+    {
+        instanceInfo.pNext = (VkDebugUtilsMessengerCreateInfoEXT*) &debugCreateInfo;
+    }
+
     VEVK_CHECK(vkCreateInstance(&instanceInfo, nullptr, &Instance));
+
+    if (gEnvConfig.bIsUsedValidationLayer)
+    {
+        VEVK_CHECK(vevkCreateDebugUtilsMessengerEXT(Instance, &debugCreateInfo, nullptr, &DebugUtils));
+    }
+
 
     return true;
 }
 
 void VEVKContext::destroy()
 {
+    if (gEnvConfig.bIsUsedValidationLayer)
+    {
+        vevkDestroyDebugUtilsMessengerEXT(Instance, DebugUtils, nullptr);
+    }
     vkDestroyInstance(Instance, nullptr);
 }
